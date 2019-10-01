@@ -1,0 +1,29 @@
+
+
+<button mat-button color="primary" class ="unboton" disabled >
+    {{palabraDesordenada}}
+ </button>
+
+ <input type = "text" name ="ingresaUsuario" class ="botonUsuario" [(ngModel)] = "palabraIngresada"/>
+
+
+<br>
+<input type = "button" value="Enviar" name = "enviar" (click)= "comparar()" />
+<br>
+
+<!---
+<input type = "text" name ="palabraSecreta" [(ngModel)] = "palabraDesordenada" disabled/>
+
+<input type = "text" name ="ingresaUsuario" [(ngModel)] = "palabraIngresada"/>
+
+<br>
+<input type = "button" value="Enviar" name = "enviar" (click)= "comparar()" />
+<br>
+-->
+<br>
+{{resultado + " intento: " + intentos}}
+<br>
+<br>
+<br>
+<br>
+Puntos {{puntos}}

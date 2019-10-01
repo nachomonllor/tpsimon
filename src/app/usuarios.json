@@ -1,0 +1,33 @@
+{
+
+"usuarios":[
+
+    {
+     "nombre":"Juan Perez",
+     "usuario":"jjperez",
+     "pass":"123456" 
+    },
+    {
+        "nombre":"Ignacio Monllor",
+        "usuario":"imonllor",
+        "pass":"123456" 
+    },
+    {
+        "nombre":"Ana Lopez",
+        "usuario":"alopez",
+        "pass":"123456" 
+    },
+    {
+        "nombre":"Laura Martinez",
+        "usuario":"lmartinez",
+        "pass":"123456789" 
+    },
+    {
+        "nombre":"Bill Gates",
+        "usuario":"bgates",
+        "pass":"123" 
+    }
+
+  ]
+
+}

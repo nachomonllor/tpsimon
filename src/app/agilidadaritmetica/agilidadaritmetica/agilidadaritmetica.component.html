@@ -1,0 +1,35 @@
+<!--
+<input type = "text" name= "num1" [(ngModel)] ="num1" disabled />
+<input type = "text" name= "operador" [(ngModel)] ="operadorSeleccionado" disabled />
+<input type = "text" name= "num2" [(ngModel)] ="num2" disabled />
+<input type = "text" name= "resUsuario" [(ngModel)] ="resUsuario"/>
+<br>
+<input type = "button" value="Enviar" name = "enviar" (click)= "comparar()" />
+<br>
+-->
+
+<button mat-button color="primary" class ="unboton" >
+   {{num1}}
+</button>
+<button mat-button color="primary" class ="unboton" >
+    {{operadorSeleccionado}}
+</button>
+<button mat-button color="primary" class ="unboton" >
+    {{num2}}
+</button>
+<input type = "text" name= "resUsuario" class ="botonUsuario" [(ngModel)] ="resUsuario"/>
+<br>
+<input type = "button" value="Enviar" name = "enviar" (click)= "comparar()" />
+<input type = "button" value="Parar" name = "enviar" (click)= "parar()" />
+<br>
+
+{{comparacion}}
+<br>    
+{{reloj}}
+
+<br>
+<br>
+{{puntos}}
+<!--{{res}} -->
+
+
