@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {Subscription} from "rxjs";
 //import {TimerObservable} from "rxjs/observable/TimerObservable";
 import { timer, Observable } from 'rxjs';
+import { USUARIOS } from 'src/modelos/usuarios';
 @Component({
   selector: 'app-login2',
   templateUrl: './login2.component.html',
@@ -12,6 +13,7 @@ import { timer, Observable } from 'rxjs';
 export class Login2Component implements OnInit {
 
   private subscription: Subscription;
+  usuarios= USUARIOS;
   usuario = '';
   clave= '';
   progreso: number;
@@ -30,14 +32,31 @@ export class Login2Component implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.usuarios);
   }
 
   Entrar() {
+    /*
     if (this.usuario === 'admin' && this.clave === 'admin') {
 
       this.router.navigate(['/simon']);
       console.log("entre");
     }
+    */
+  
+    for(let i =0; i<this.usuarios.length; i++) {
+       if(this.usuario === this.usuarios[i].usuario &&
+        this.clave === this.usuarios[i].contras ) {
+            this.router.navigate(['/simon']);
+            //this.usuarios[i].
+            localStorage.setItem('jugador', JSON.stringify(this.usuarios[i]));
+            console.log("entre");
+          } 
+         
+    }
+   //si no encontro a ningun usuario con ese nombre y pass
+   //que muestre un texto
+
   }
   MoverBarraDeProgreso() {
     

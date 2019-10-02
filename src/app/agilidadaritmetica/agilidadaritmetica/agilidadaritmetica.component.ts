@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Jugador } from 'src/modelos/jugador';
+import { Juego } from 'src/modelos/juego';
 
 @Component({
   selector: 'app-agilidadaritmetica',
@@ -17,14 +19,33 @@ export class AgilidadaritmeticaComponent implements OnInit {
   comparacion :string;
   reloj:number =10;
   puntos:number=0;
+  //1 creas el jugador
+  jugador:Jugador;
+  juego:Juego;
   //arrayOperadores = new Array<string>("+","-", "*");
   constructor() 
   { 
-   
+    //2.colocar nombre del juego
+     this.juego = new Juego();
+     this.juego.nombre = "Agilidad Aritmetica";
+     this.juego.cantidadPuntos =0;
+     this.juego.hora = new Date();
+   //console.log(this.juego);
 
   }
   ngOnInit() {
-    this.cargarNumeros();
+ //3.Recupera jugador de la base de datos
+    this.jugador = JSON.parse(localStorage.getItem('jugador'));
+  console.log(this.jugador); 
+  /*
+  console.log(this.jugador);  
+  this.cargarNumeros();
+    this._timer = setInterval(() => this.contador(), 1000);
+    */
+}
+comenzar() {
+   
+  this.cargarNumeros();
     this._timer = setInterval(() => this.contador(), 1000);
 }
 
@@ -81,8 +102,21 @@ pasarSiguiente(){
        }    
      }
    }
-   parar(){
-    clearInterval(this._timer); 
+   finalizar(){
+    clearInterval(this._timer);
+    //4.finaliza el juego, cargas datos
+    this.juego.cantidadPuntos=this.puntos;
+    this.jugador.juegos.push(this.juego);
+    //5. guardas en la base de datos
+    localStorage.setItem('jugador', JSON.stringify(this.jugador));
+    console.log(this.jugador);
+
+    //6.resetas el juego
+     this.juego = new Juego();
+     this.juego.nombre = "Agilidad Aritmetica";
+     this.juego.cantidadPuntos =0;
+     this.juego.hora = new Date();
+
    }
 
 
