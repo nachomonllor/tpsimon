@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Juego } from 'src/modelos/juego';
+import { Jugador } from 'src/modelos/jugador';
 
 @Component({
   selector: 'app-piedrapapeltijera',
@@ -8,33 +10,44 @@ import { Component, OnInit } from '@angular/core';
 export class PiedrapapeltijeraComponent implements OnInit {
 
   indiceElementoSeleccionado: number;
-   
   //podria ser un array de urls con imagnes de piedra, papel y tijera
   arrayElementos = new Array<string> ("piedra", "papel", "tijera");
-
   elementoSeleccionado :string;
-
-  //tendria que haber un selector de imagenes de piedra papel tijera
   palabraIngresada:string;
-
   puntajeHumano:number=0;
   puntajeCompu:number=0;
+  
+  //para guardar en el localStorage
+  juego:Juego;
+  jugador:Jugador;
 
+  rondas :number = 0;
+  resultadoFinal = "";
 
   seleccionarElemento() {
     this.indiceElementoSeleccionado = Math.floor(Math.random() * 3);
-
    // console.log(this.indiceElementoSeleccionado);
-
     this.elementoSeleccionado = this.arrayElementos[this.indiceElementoSeleccionado];
-
+    console.log(this.elementoSeleccionado);
   }
-  
 
-  constructor() { }
+
+  inicializarJuego() {
+    this.juego = new Juego();
+    this.juego.nombre = "Piedra Papel Tijera";
+    this.juego.cantidadPuntos =0;
+    this.juego.hora = new Date();
+  }
+
+
+  constructor() {
+     this.inicializarJuego();
+   }
 
   ngOnInit() {
 
+    this.jugador = JSON.parse(localStorage.getItem('jugador'));
+    console.log(this.jugador); 
     this.seleccionarElemento();
 
   }
@@ -88,6 +101,28 @@ export class PiedrapapeltijeraComponent implements OnInit {
           }
       }
 
+      
+      this.rondas++;
+
+      if(this.rondas == 3) {
+          this.finalizar();
+
+          if(this.puntajeCompu > this.puntajeHumano) {
+             this.resultadoFinal ="RESULTADO FINAL: GANO LA COMPU";
+          }
+          else if(this.puntajeCompu < this.puntajeHumano) {
+             this.resultadoFinal = "RESULTADO FINAL: GANASTE";
+          }
+          else{
+            this.resultadoFinal ="EMPATE";
+          }
+          this.inicializarJuego();
+          this.puntajeCompu =0;
+          this.puntajeHumano =0;
+
+      }
+      
+
   }
 
   
@@ -110,5 +145,27 @@ export class PiedrapapeltijeraComponent implements OnInit {
     this.comparar();
     this.seleccionarElemento();
   }
+
+  JugarOtraVez() {
+    this.puntajeHumano = 0;
+    this.puntajeCompu = 0;
+  }
+   
+  finalizar(){
+    //clearInterval(this._timer);
+    //4.finaliza el juego, cargas datos
+    this.juego.cantidadPuntos=this.puntajeHumano;
+    this.jugador.juegos.push(this.juego);
+    //5. guardas en la base de datos
+    localStorage.setItem('jugador', JSON.stringify(this.jugador));
+    console.log(this.jugador);
+
+    //6.resetas el juego
+    this.inicializarJuego();
+    this.JugarOtraVez();
+
+
+ }
+
 
 }

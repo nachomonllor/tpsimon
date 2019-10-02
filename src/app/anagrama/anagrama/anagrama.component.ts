@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Juego } from 'src/modelos/juego';
+import { Jugador } from 'src/modelos/jugador';
 
 
 @Component({
@@ -15,7 +17,8 @@ export class AnagramaComponent implements OnInit {
   palabraIngresada:string; //ingresa usuario
   intentos:number =0;
   resultado :string ="Esperando: ";
-
+  juego: Juego;
+  jugador:Jugador;
   puntos: number = 0;  
 
   constructor() {
@@ -26,14 +29,32 @@ export class AnagramaComponent implements OnInit {
       this.palabras.push("mesa");
       this.palabras.push("telefono");
       this.palabras.push("anagrama");
+
+      this.inicializarJuego();
+
+
    }
 
+
    ngOnInit() {
+
+    this.jugador = JSON.parse(localStorage.getItem('jugador'));
+    console.log(this.jugador); 
     this.seleccionarPalabra();
     this.desordenarPalabra();
   }
 
-
+  inicializarJuego() {
+    this.juego = new Juego();
+    this.juego.nombre = "Anagrama";
+    this.juego.cantidadPuntos =0;
+    this.juego.hora = new Date();
+  }
+  
+  JugarOtraVez() {
+    this.puntos = 0;
+  }
+   
 
    seleccionarPalabra() {
        var indSeleccionado = Math.floor(Math.random() * this.palabras.length);
@@ -111,5 +132,18 @@ export class AnagramaComponent implements OnInit {
      
    }
  
+   finalizar(){
+      //clearInterval(this._timer);
+      //4.finaliza el juego, cargas datos
+      this.juego.cantidadPuntos=this.puntos;
+      this.jugador.juegos.push(this.juego);
+      //5. guardas en la base de datos
+      localStorage.setItem('jugador', JSON.stringify(this.jugador));
+      console.log(this.jugador);
+
+      //6.resetas el juego
+      this.inicializarJuego();
+      this.JugarOtraVez();
+   }
 
 }

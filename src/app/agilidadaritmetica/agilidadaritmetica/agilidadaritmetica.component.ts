@@ -45,7 +45,7 @@ export class AgilidadaritmeticaComponent implements OnInit {
 }
 comenzar() {
    
-  this.cargarNumeros();
+    this.cargarNumeros();
     this._timer = setInterval(() => this.contador(), 1000);
 }
 

@@ -47,7 +47,7 @@ export class Login2Component implements OnInit {
     for(let i =0; i<this.usuarios.length; i++) {
        if(this.usuario === this.usuarios[i].usuario &&
         this.clave === this.usuarios[i].contras ) {
-            this.router.navigate(['/simon']);
+            this.router.navigate(['/home']);
             //this.usuarios[i].
             localStorage.setItem('jugador', JSON.stringify(this.usuarios[i]));
             console.log("entre");
