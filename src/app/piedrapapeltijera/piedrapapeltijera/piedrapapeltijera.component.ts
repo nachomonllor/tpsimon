@@ -22,7 +22,8 @@ export class PiedrapapeltijeraComponent implements OnInit {
   jugador:Jugador;
 
   rondas :number = 0;
-  resultadoFinal = "";
+  resultadoParcial :string = "";
+  resultadoFinal:string = "";
 
   seleccionarElemento() {
     this.indiceElementoSeleccionado = Math.floor(Math.random() * 3);
@@ -33,6 +34,7 @@ export class PiedrapapeltijeraComponent implements OnInit {
 
 
   inicializarJuego() {
+    this.seleccionarElemento();
     this.juego = new Juego();
     this.juego.nombre = "Piedra Papel Tijera";
     this.juego.cantidadPuntos =0;
@@ -52,21 +54,21 @@ export class PiedrapapeltijeraComponent implements OnInit {
 
   }
 
-    resultado :string = "";
+    
 
     comparar() {
 
           if(this.elementoSeleccionado == "piedra") {
               
               if(this.palabraIngresada == "piedra") {
-                  this.resultado = "EMPATE";
+                  this.resultadoParcial = "EMPATE";
               }
               else if(this.palabraIngresada == "papel") {
-                this.resultado = "GANO EL USUARIO";
+                this.resultadoParcial = "GANO EL USUARIO";
                 this.puntajeHumano +=10;
               } 
               else{
-                this.resultado = "GANA LA COMPU";
+                this.resultadoParcial = "GANA LA COMPU";
                 this.puntajeCompu +=10;
               }
           }
@@ -74,14 +76,14 @@ export class PiedrapapeltijeraComponent implements OnInit {
           else if(this.elementoSeleccionado == "papel") {
               
             if(this.palabraIngresada == "piedra") {
-                this.resultado = "GANA LA COMPU";
+                this.resultadoParcial = "GANA LA COMPU";
                 this.puntajeCompu +=10;
             }
             else if(this.palabraIngresada == "papel") {
-              this.resultado = "EMPATE";
+              this.resultadoParcial = "EMPATE";
             } 
             else{
-              this.resultado = "GANA EL USUARIO";
+              this.resultadoParcial = "GANA EL USUARIO";
               this.puntajeHumano +=10;
             }
         }
@@ -89,15 +91,15 @@ export class PiedrapapeltijeraComponent implements OnInit {
         else if(this.elementoSeleccionado == "tijera") {
               
           if(this.palabraIngresada == "piedra") {
-              this.resultado = "GANA EL USUARIO"; 
+              this.resultadoParcial = "GANA EL USUARIO"; 
               this.puntajeHumano +=10;
           }
           else if(this.palabraIngresada == "papel") {
-            this.resultado = "GANA LA COMPU"; 
+            this.resultadoParcial = "GANA LA COMPU"; 
             this.puntajeCompu +=10;
           } 
           else{
-            this.resultado = "EMPATE"; 
+            this.resultadoParcial = "EMPATE"; 
           }
       }
 
@@ -105,7 +107,7 @@ export class PiedrapapeltijeraComponent implements OnInit {
       this.rondas++;
 
       if(this.rondas == 3) {
-          this.finalizar();
+          
 
           if(this.puntajeCompu > this.puntajeHumano) {
              this.resultadoFinal ="RESULTADO FINAL: GANO LA COMPU";
@@ -114,15 +116,17 @@ export class PiedrapapeltijeraComponent implements OnInit {
              this.resultadoFinal = "RESULTADO FINAL: GANASTE";
           }
           else{
-            this.resultadoFinal ="EMPATE";
+            this.resultadoFinal ="RESULTADO FINAL: EMPATE";
           }
-          this.inicializarJuego();
-          this.puntajeCompu =0;
-          this.puntajeHumano =0;
-
+          this.finalizar();
+          //this.inicializarJuego();
+          //this.puntajeCompu =0;
+          //this.puntajeHumano =0;
+          //this.resultadoFinal = "";
+          this.rondas =0;
+          
       }
       
-
   }
 
   
@@ -146,10 +150,11 @@ export class PiedrapapeltijeraComponent implements OnInit {
     this.seleccionarElemento();
   }
 
+  /*
   JugarOtraVez() {
     this.puntajeHumano = 0;
     this.puntajeCompu = 0;
-  }
+  }*/
    
   finalizar(){
     //clearInterval(this._timer);
@@ -162,7 +167,8 @@ export class PiedrapapeltijeraComponent implements OnInit {
 
     //6.resetas el juego
     this.inicializarJuego();
-    this.JugarOtraVez();
+    this.puntajeHumano = 0;
+    this.puntajeCompu = 0;
 
 
  }
