@@ -8,6 +8,7 @@ import { SimonComponent } from './simon/simon/simon.component';
 import { MenuprincipalComponent } from './menuprincipal/menuprincipal.component';
 import { MenuComponent } from './menu/menu.component';
 import { LoginComponent } from './login/login.component';
+import { Login2Component } from './login2/login2.component';
 
 const routes: Routes = [
   {path:  'home', component: MenuprincipalComponent},
@@ -18,8 +19,9 @@ const routes: Routes = [
   {path: 'agilidadaritmetica' , component:AgilidadaritmeticaComponent},
   {path: 'tateti' , component:TatetiComponent},
   {path: 'simon' , component:SimonComponent},
-  {path: 'login', component:LoginComponent }
- 
+  {path: 'login', component:LoginComponent },
+  //Login2Component
+  {path: 'login2', component:Login2Component },
 ];
 
 @NgModule({

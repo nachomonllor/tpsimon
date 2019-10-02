@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+/* import { EventEmitter } from 'events';
 
 export class SchedulerService extends EventEmitter {
 
@@ -25,5 +25,5 @@ export class SchedulerService extends EventEmitter {
             clearInterval(this.handle);
             this.handle = undefined;
         }
-    }
-}
+    } 
+}*/

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import { analytics } from 'firebase';
-import { SchedulerService } from './schedule';
+//import { SchedulerService } from './schedule';
 import { interval, Subject, timer } from 'rxjs';
 import { map, take, tap, throttleTime } from 'rxjs/operators';
 
@@ -150,9 +150,9 @@ export class SimonComponent implements OnInit {
        })
    }
    
-   limite:number = 1;
+   limite:number = 15;
    mostrarSecuenciaConLimite() {
-    timer(this.delay, 1000).pipe(
+    timer(this.delay, 3000).pipe(
       take(this.limite)).subscribe(x=>{
            this.mostrarColor();
            //this.apagarTodos();

@@ -16,13 +16,14 @@ import { SimonComponent } from './simon/simon/simon.component';
 import { MenuprincipalComponent } from './menuprincipal/menuprincipal.component';
 import { CabeceraComponent } from './cabecera/cabecera.component';
 import { MenuComponent } from './menu/menu.component';
-import { LoginComponent } from './login/login.component';
+
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+import { Login2Component } from './login2/login2.component';
 
 
 
@@ -39,7 +40,8 @@ import { environment } from '../environments/environment';
     MenuprincipalComponent,
     CabeceraComponent,
     MenuComponent,
-    LoginComponent,
+   
+    Login2Component,
    
   ],
   imports: [
