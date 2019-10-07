@@ -140,6 +140,8 @@ export class SimonComponent implements OnInit {
     clearInterval(this._timer); 
    }
   
+
+   
    
    mostrarSecuencia() {
     timer(this.delay, 1000).pipe(
@@ -147,6 +149,7 @@ export class SimonComponent implements OnInit {
            this.mostrarColor();
            //this.apagarTodos();
        })
+       
    }
    
    
@@ -168,6 +171,9 @@ export class SimonComponent implements OnInit {
 
    }
 
+
+   estadoJuego:string ="turno maquina";
+   
    Jugar() {
       
       //for(let i =0; i<this.limite; i++) {
@@ -175,6 +181,7 @@ export class SimonComponent implements OnInit {
        { 
          this.mostrarSecuenciaConLimite();
          //this.mostrarSecuenciaUsuario();
+         this.estadoJuego ="turno usuario";
          //this.comparar();
        }
 

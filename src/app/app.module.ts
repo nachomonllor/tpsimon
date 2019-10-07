@@ -24,6 +24,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { Login2Component } from './login2/login2.component';
+import { Menuprincipal2Component } from './menuprincipal2/menuprincipal2.component';
 
 
 
@@ -42,6 +43,8 @@ import { Login2Component } from './login2/login2.component';
     MenuComponent,
    
     Login2Component,
+   
+    Menuprincipal2Component,
    
   ],
   imports: [
